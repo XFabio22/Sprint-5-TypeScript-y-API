@@ -34,25 +34,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var HTMLResponse = document.querySelector("#joke");
 function cargarChiste() {
     return __awaiter(this, void 0, void 0, function () {
-        var API_URL, requestOptions1, respuesta, chisteResuesta;
+        var API_URL, confiApi;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     API_URL = "https://icanhazdadjoke.com/";
-                    requestOptions1 = {
+                    confiApi = {
                         headers: {
                             Accept: "application/json"
                         }
                     };
-                    return [4 /*yield*/, fetch(API_URL, requestOptions1)];
+                    // const respuesta: any = 
+                    return [4 /*yield*/, fetch(API_URL, confiApi)
+                            .then(function (response) { return response.json(); })
+                            .then(function (chistes) {
+                            var tpl = chistes.map(function (chiste) { return "<li> ".concat(chiste, "</li>"); });
+                            HTMLResponse.innerHTML = "<ul>".concat(tpl, " </ul>");
+                        })
+                        // const chisteResuesta: any = await respuesta.json();
+                        // console.log(chisteResuesta);
+                    ];
                 case 1:
-                    respuesta = _a.sent();
-                    return [4 /*yield*/, respuesta.json()];
-                case 2:
-                    chisteResuesta = _a.sent();
-                    console.log(chisteResuesta);
+                    // const respuesta: any = 
+                    _a.sent();
                     return [2 /*return*/];
             }
         });
