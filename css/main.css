@@ -1,10 +1,13 @@
 @charset "UTF-8";
-#contendor_principarl {
-  text-align: center;
-  background-image: url(img\a leks-marinkovic-HB88RWKP_1E-unsplash.jpg);
+body {
+  background-image: url(/img/aleks-marinkovic-HB88RWKP_1E-unsplash.jpg);
   background-position: center;
   background-attachment: contain;
   background-size: cover;
+}
+
+#contendor_principarl {
+  text-align: center;
 }
 
 /*!
