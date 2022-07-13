@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <script src="main.js" ></script>
     <title>API Y Type Script</title>
     
 </head>
@@ -16,10 +17,17 @@
             <div id="joke">
                 
             </div><br>
-            <button type="button" class="btn btn-outline-primary"onclick="cargarChistes()">😂</button>
+            <div id="puntuacion" class="m-1">
+                <button class="btn btn-outline-danger m-1" onclick="puntuacion1(id)">😐</button>
+                <button class="btn btn-outline-warning m-1" onclick="puntuacion2(id)">🙂</button>
+                <button class="btn btn-outline-success m-1" onclick="puntuacion3(id)">😆</button>
+
+            </div>
+            <br>
+            <button type="button" class="btn btn-outline-light"onclick="cargarChistes()">Siguiente Chiste😂</button>
        </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" ></script>
-    <script src="main.js" ></script>
+    
 </body>
 </html>

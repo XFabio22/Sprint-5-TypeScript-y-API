@@ -4,10 +4,16 @@ body {
   background-position: center;
   background-attachment: contain;
   background-size: cover;
+  height: 700px;
 }
 
 #contendor_principarl {
   text-align: center;
+  color: white;
+}
+
+p {
+  display: inline;
 }
 
 /*!
