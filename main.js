@@ -64,6 +64,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 // }
 // ERRORE INTENTE HACER UN MAP Y DABA ERROR PORQUE NO DEVOLVIA UNA ARRAY 
 // NOTAS que arranque con un chiste y sacar el interface de la funcion cargar chiste 
+var antesDreport = [];
 function cargarChistes() {
     return __awaiter(this, void 0, void 0, function () {
         var API_URL, confiApi;
@@ -81,17 +82,8 @@ function cargarChistes() {
                             .then(function (data) {
                             var element = document.getElementById('joke');
                             element.innerHTML = "<p>".concat(data.joke, "<p>");
-                            // let puntos:any = document.getElementById('puntuacion');
-                            // document.getElementById('puntuacion').innerHTML='';
-                            // const puntos1 = document.createElement('p');
-                            // puntos1.innerHTML = '<button class="btn btn-outline-danger m-1" onclick="puntuacion1('+data.id+')">😐</button>';
-                            // puntos.appendChild(puntos1);
-                            // const puntos2 = document.createElement('p');
-                            // puntos2.innerHTML = '<button class="btn btn-outline-warning m-1" onclick="puntuacion2('+data.joke+')">🙂</button>';
-                            // puntos.appendChild(puntos2);
-                            // const puntos3 = document.createElement('p');
-                            // puntos3.innerHTML = '<button class="btn btn-outline-success m-1" onclick="puntuacion3('+data.joke+')">😆</button>';
-                            // puntos.appendChild(puntos3);
+                            antesDreport.push(data);
+                            console.log(antesDreport);
                         })];
                 case 1:
                     _a.sent();
@@ -100,9 +92,9 @@ function cargarChistes() {
         });
     });
 }
+cargarChistes();
 var reportJoke = [];
 var fechaActual = new Date;
-cargarChistes();
 var VOTEDJOKE = /** @class */ (function () {
     function VOTEDJOKE(jokeP, score, date) {
         this.jokeP = jokeP;
@@ -111,8 +103,9 @@ var VOTEDJOKE = /** @class */ (function () {
     }
     return VOTEDJOKE;
 }());
-function puntuacion1(data) {
-    var jokeP = data;
+function puntuacion1(id) {
+    var chiste = antesDreport.map(function (datos) { return datos.joke; });
+    var jokeP = chiste;
     var score = 1;
     var date = fechaActual.toISOString();
     var joke1 = new VOTEDJOKE(jokeP, score, date);

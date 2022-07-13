@@ -32,47 +32,32 @@
 // }
 // ERRORE INTENTE HACER UN MAP Y DABA ERROR PORQUE NO DEVOLVIA UNA ARRAY 
 // NOTAS que arranque con un chiste y sacar el interface de la funcion cargar chiste 
-
+let antesDreport:any[]= []
 async function cargarChistes() {
-
-
     const API_URL = "https://icanhazdadjoke.com/";
     let confiApi = {
         headers: {
             Accept: "application/json",
         },
     };
-   await fetch(API_URL, confiApi) // hace un peticion y devuelve el valor se asemeja a un forEach
+    await fetch(API_URL, confiApi) // hace un peticion y devuelve el valor se asemeja a un forEach
     .then( response => response.json())
     .then(data => {
       let element:any = document.getElementById('joke');
       element.innerHTML = `<p>${data.joke}<p>`;
-        
 
-      // let puntos:any = document.getElementById('puntuacion');
-      // document.getElementById('puntuacion').innerHTML='';
+      antesDreport.push(data);
+      console.log(antesDreport);
 
-      // const puntos1 = document.createElement('p');
-      // puntos1.innerHTML = '<button class="btn btn-outline-danger m-1" onclick="puntuacion1('+data.id+')">😐</button>';
-      // puntos.appendChild(puntos1);
-
-      // const puntos2 = document.createElement('p');
-      // puntos2.innerHTML = '<button class="btn btn-outline-warning m-1" onclick="puntuacion2('+data.joke+')">🙂</button>';
-      // puntos.appendChild(puntos2);
-
-      // const puntos3 = document.createElement('p');
-      // puntos3.innerHTML = '<button class="btn btn-outline-success m-1" onclick="puntuacion3('+data.joke+')">😆</button>';
-      // puntos.appendChild(puntos3);
-      
     })
-  
-   
+    
+
   }
-  
+  cargarChistes();
   let reportJoke:any[] = []
   let fechaActual = new Date;
 
-  cargarChistes()
+  
   interface ObjJoke{
     jokeP: string;
     score: number;
@@ -92,8 +77,9 @@ async function cargarChistes() {
   }
  
 
-  function puntuacion1(data){
-    let jokeP= data;
+  function puntuacion1(id){
+    let chiste:any = antesDreport.map(datos => datos.joke)
+    let jokeP= chiste;
     let score = 1;
     let date = fechaActual.toISOString();
     let joke1 = new VOTEDJOKE(jokeP,score,date);
