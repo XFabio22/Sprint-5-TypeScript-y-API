@@ -1,17 +1,5 @@
-// async function cargarChiste() {
-//     const API_URL = "https://icanhazdadjoke.com/";
-//     let confiApi = {
-//         headers: {
-//           Accept: "application/json",
-//         },
-//       };
-//       // const respuesta: any = 
-//       await fetch(API_URL, confiApi)
-//       .then((response)=> response.json())
-//       .then((chistes) => {
-//         const tpl= chistes.map((chiste:string) => `<li> ${chiste}</li>`)
-//         HTMLResponse.innerHTML=`<ul>${tpl} </ul>`
-//       })
+// ERRORE INTENTE HACER UN MAP Y DABA ERROR PORQUE NO DEVOLVIA UNA ARRAY 
+// NOTAS que arranque con un chiste y sacar el interface de la funcion cargar chiste 
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -48,23 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//       // const chisteResuesta: any = await respuesta.json();
-//       // console.log(chisteResuesta);
-// } 
-// async function cargarChistes() {
-//     const API_URL = "https://icanhazdadjoke.com/";
-//     let confiApi = {
-//         headers: {
-//             Accept: "application/json",
-//         },
-//     };
-//     const respuesta: any = await fetch(API_URL, confiApi)
-//     const chisteResuesta: any = await respuesta.json();
-//     console.log(chisteResuesta);
-// }
-// ERRORE INTENTE HACER UN MAP Y DABA ERROR PORQUE NO DEVOLVIA UNA ARRAY 
-// NOTAS que arranque con un chiste y sacar el interface de la funcion cargar chiste 
-var antesDreport = [];
+// FETCH APIS WHATER & JOKE 
+cargarTemperaturas();
 function cargarChistes() {
     return __awaiter(this, void 0, void 0, function () {
         var API_URL, confiApi;
@@ -82,8 +55,8 @@ function cargarChistes() {
                             .then(function (data) {
                             var element = document.getElementById('joke');
                             element.innerHTML = "<p>".concat(data.joke, "<p>");
-                            antesDreport.push(data);
-                            console.log(antesDreport);
+                            crearObjJoke(data);
+                            // cargarTemperaturas();
                         })];
                 case 1:
                     _a.sent();
@@ -92,27 +65,76 @@ function cargarChistes() {
         });
     });
 }
+function cargarTemperaturas() {
+    var API_URL_TEMP = "http://api.weatherapi.com/v1/current.json?key=74b79570c166486883b85428221407&q=Barcelona&aqi=no";
+    var confiApi2 = {
+        headers: {
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Vary": "Accept-Encoding",
+            "CDN-PullZone": "93447",
+            "CDN-Uid": "8fa3a04a-75d9-4707-8056-b7b33c8ac7fe",
+            "CDN-RequestCountryCode": "GB",
+            "CDN-ProxyVer": "1.02",
+            "CDN-RequestPullSuccess": "True",
+            "CDN-RequestPullCode": "200",
+            "CDN-CachedAt": "07/15/2022 23:19:46",
+            "CDN-EdgeStorageId": "752",
+            "CDN-Status": "200",
+            "CDN-RequestId": "0b24f89fabca4370fd07868e18fb9c75",
+            "CDN-Cache": "MISS",
+            "Cache-Control": "public, max-age=180",
+            "Content-Type": "application/json",
+            "Date": "Fri, 15 Jul 2022 23:19:46 GMT",
+            "Server": "BunnyCDN-DE-880"
+        }
+    };
+    fetch(API_URL_TEMP, confiApi2)
+        .then(function (response) { return response.json(); })
+        .then(function (dataTemp) {
+        var element = document.getElementById('temperatura');
+        element.innerHTML = "<p>".concat(dataTemp.current.temp_c, "<p>");
+        console.log(dataTemp.current.temp_c);
+    });
+}
 cargarChistes();
+// CREATE OBJ JOKE
 var reportJoke = [];
 var fechaActual = new Date;
 var VOTEDJOKE = /** @class */ (function () {
-    function VOTEDJOKE(jokeP, score, date) {
+    function VOTEDJOKE(id, jokeP, score, date) {
+        this.id = id;
         this.jokeP = jokeP;
         this.score = score;
         this.date = date;
     }
     return VOTEDJOKE;
 }());
-function puntuacion1(id) {
-    var chiste = antesDreport.map(function (datos) { return datos.joke; });
+function crearObjJoke(data) {
+    var id = data.id;
+    var chiste = data.joke;
     var jokeP = chiste;
-    var score = 1;
+    var score = 0;
     var date = fechaActual.toISOString();
-    var joke1 = new VOTEDJOKE(jokeP, score, date);
+    var joke1 = new VOTEDJOKE(id, jokeP, score, date);
     reportJoke.push(joke1);
-    console.log(reportJoke);
 }
-function puntuacion2() {
+// SCORE BUTTONS 
+function puntuacion1(score) {
+    reportJoke[reportJoke.length - 1].score = score;
+    console.log("Chiste reportados", reportJoke);
+    cargarChistes();
 }
-function puntuacion3() {
+;
+function puntuacion2(score) {
+    reportJoke[reportJoke.length - 1].score = score;
+    console.log("Chiste reportados", reportJoke);
+    cargarChistes();
 }
+;
+function puntuacion3(score) {
+    reportJoke[reportJoke.length - 1].score = score;
+    console.log("Chiste reportados", reportJoke);
+    cargarChistes();
+}
+;
