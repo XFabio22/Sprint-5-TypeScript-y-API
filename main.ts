@@ -1,7 +1,18 @@
 // ERRORE INTENTE HACER UN MAP Y DABA ERROR PORQUE NO DEVOLVIA UNA ARRAY 
 // NOTAS que arranque con un chiste y sacar el interface de la funcion cargar chiste 
 
-// FETCH APIS WHATER & JOKE 
+
+// FETCH APIS WHATER & JOKE
+function randomJoke(){
+  let apiRandom =Math.floor(Math.random() * 2 + 1)
+  if(apiRandom == 1){
+    cargarChistes();
+  }else if (apiRandom == 2){
+    chuckJokes();
+  }
+  console.log ("1 JOKE , 2 CHUCK JOKE:",apiRandom);
+}
+
 cargarTemperaturas();
 async function cargarChistes() {
     const API_URL = "https://icanhazdadjoke.com/";
@@ -16,8 +27,7 @@ async function cargarChistes() {
       let element:any = document.getElementById('joke');
       element.innerHTML = `<p>${data.joke}<p>`;
       crearObjJoke(data);
-      // cargarTemperaturas();
-
+       cargarTemperaturas();
 
     })
     
@@ -55,6 +65,24 @@ async function cargarChistes() {
       element.innerHTML = `<p>${dataTemp.current.temp_c}<p>`;
       console.log(dataTemp.current.temp_c);
     }) 
+}
+
+async function chuckJokes() {
+  let API_URL_CHUCK = "https://api.chucknorris.io/jokes/random";
+  let confiApi3 = {
+    headers: { 
+        Accept: "application/json",
+    },
+};
+
+  fetch( API_URL_CHUCK,confiApi3)
+  .then(response => response.json())
+  .then(dataChuck =>{
+    let element:any = document.getElementById('joke');
+    element.innerHTML = `<p>${dataChuck.value}<p>`;
+
+    cargarTemperaturas();
+  }) 
 }
   cargarChistes();
 
@@ -99,20 +127,20 @@ function puntuacion1(score: number) {
   reportJoke[reportJoke.length -1].score = score;
 
   console.log("Chiste reportados", reportJoke);
-  cargarChistes();
+  randomJoke();
 
 };
 function puntuacion2(score: number) {
   reportJoke[reportJoke.length -1].score = score;
 
   console.log("Chiste reportados", reportJoke);
-  cargarChistes();
+  randomJoke();
 
 };
 function puntuacion3(score: number) {
   reportJoke[reportJoke.length -1].score = score;
 
   console.log("Chiste reportados", reportJoke);
-  cargarChistes();
+  randomJoke();
 
 }; 

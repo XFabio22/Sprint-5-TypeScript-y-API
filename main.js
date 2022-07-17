@@ -36,7 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// FETCH APIS WHATER & JOKE 
+// FETCH APIS WHATER & JOKE
+function randomJoke() {
+    var apiRandom = Math.floor(Math.random() * 2 + 1);
+    if (apiRandom == 1) {
+        cargarChistes();
+    }
+    else if (apiRandom == 2) {
+        chuckJokes();
+    }
+    console.log("1 JOKE , 2 CHUCK JOKE:", apiRandom);
+}
 cargarTemperaturas();
 function cargarChistes() {
     return __awaiter(this, void 0, void 0, function () {
@@ -56,7 +66,7 @@ function cargarChistes() {
                             var element = document.getElementById('joke');
                             element.innerHTML = "<p>".concat(data.joke, "<p>");
                             crearObjJoke(data);
-                            // cargarTemperaturas();
+                            cargarTemperaturas();
                         })];
                 case 1:
                     _a.sent();
@@ -97,6 +107,27 @@ function cargarTemperaturas() {
         console.log(dataTemp.current.temp_c);
     });
 }
+function chuckJokes() {
+    return __awaiter(this, void 0, void 0, function () {
+        var API_URL_CHUCK, confiApi3;
+        return __generator(this, function (_a) {
+            API_URL_CHUCK = "https://api.chucknorris.io/jokes/random";
+            confiApi3 = {
+                headers: {
+                    Accept: "application/json"
+                }
+            };
+            fetch(API_URL_CHUCK, confiApi3)
+                .then(function (response) { return response.json(); })
+                .then(function (dataChuck) {
+                var element = document.getElementById('joke');
+                element.innerHTML = "<p>".concat(dataChuck.value, "<p>");
+                cargarTemperaturas();
+            });
+            return [2 /*return*/];
+        });
+    });
+}
 cargarChistes();
 // CREATE OBJ JOKE
 var reportJoke = [];
@@ -123,18 +154,18 @@ function crearObjJoke(data) {
 function puntuacion1(score) {
     reportJoke[reportJoke.length - 1].score = score;
     console.log("Chiste reportados", reportJoke);
-    cargarChistes();
+    randomJoke();
 }
 ;
 function puntuacion2(score) {
     reportJoke[reportJoke.length - 1].score = score;
     console.log("Chiste reportados", reportJoke);
-    cargarChistes();
+    randomJoke();
 }
 ;
 function puntuacion3(score) {
     reportJoke[reportJoke.length - 1].score = score;
     console.log("Chiste reportados", reportJoke);
-    cargarChistes();
+    randomJoke();
 }
 ;

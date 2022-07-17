@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css\main.css">
     <script src="https://kit.fontawesome.com/db1eb623e4.js" crossorigin="anonymous"></script>
     <script src="main.js" ></script>
     <title>API Y Type Script</title>
@@ -14,17 +14,18 @@
 <body>
     <div>
         <nav class="navbar navbar-light ">
-            <div class="container text-white">
+            <div class="container">
                <div>
-                <p class="text-white" id="temperatura"></p>
+                <p  id="temperatura"></p>
                 <i class="fa-solid fa-temperature-half"></i>
                </div>
             </div>
             
           </nav>
     </div>
-    <div class="container">
-        <div class="container text-white" id="contendor_principarl">
+    <div class="container ">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-12 pt-12  " >
             <h1>READY TO SMAILE🤣 ????</h1>
             <div id="joke">
                 
@@ -36,8 +37,9 @@
 
             </div>
             <br>
-            <button type="button" class="btn btn-outline-light"onclick="cargarChistes()">Siguiente Chiste😂</button>
-       </div>
+            <button type="button" class="btn btn-outline-light"onclick="randomJoke()">Siguiente Chiste😂</button>
+        </div>  
+       
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js" ></script>
     

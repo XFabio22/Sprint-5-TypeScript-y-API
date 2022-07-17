@@ -1,18 +1,22 @@
 @charset "UTF-8";
 body {
-  background-image: url(/img/aleks-marinkovic-HB88RWKP_1E-unsplash.jpg);
+  background-image: url(/img/blob.svg);
   background-position: center;
   background-attachment: contain;
   background-size: cover;
   height: 700px;
 }
 
-#contendor_principarl {
+.container {
   text-align: center;
 }
 
 p {
   display: inline;
+}
+
+.container_SVG {
+  z-index: -1;
 }
 
 /*!
