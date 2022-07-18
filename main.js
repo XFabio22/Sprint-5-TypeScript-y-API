@@ -76,55 +76,71 @@ function cargarChistes() {
     });
 }
 function cargarTemperaturas() {
-    var API_URL_TEMP = "http://api.weatherapi.com/v1/current.json?key=74b79570c166486883b85428221407&q=Barcelona&aqi=no";
-    var confiApi2 = {
-        headers: {
-            "Transfer-Encoding": "chunked",
-            "Connection": "keep-alive",
-            "Vary": "Accept-Encoding",
-            "CDN-PullZone": "93447",
-            "CDN-Uid": "8fa3a04a-75d9-4707-8056-b7b33c8ac7fe",
-            "CDN-RequestCountryCode": "GB",
-            "CDN-ProxyVer": "1.02",
-            "CDN-RequestPullSuccess": "True",
-            "CDN-RequestPullCode": "200",
-            "CDN-CachedAt": "07/15/2022 23:19:46",
-            "CDN-EdgeStorageId": "752",
-            "CDN-Status": "200",
-            "CDN-RequestId": "0b24f89fabca4370fd07868e18fb9c75",
-            "CDN-Cache": "MISS",
-            "Cache-Control": "public, max-age=180",
-            "Content-Type": "application/json",
-            "Date": "Fri, 15 Jul 2022 23:19:46 GMT",
-            "Server": "BunnyCDN-DE-880"
-        }
-    };
-    fetch(API_URL_TEMP, confiApi2)
-        .then(function (response) { return response.json(); })
-        .then(function (dataTemp) {
-        var element = document.getElementById('temperatura');
-        element.innerHTML = "<p>".concat(dataTemp.current.temp_c, "<p>");
-        console.log(dataTemp.current.temp_c);
+    return __awaiter(this, void 0, void 0, function () {
+        var API_URL_TEMP, confiApi2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    API_URL_TEMP = "http://api.weatherapi.com/v1/current.json?key=74b79570c166486883b85428221407&q=Barcelona&aqi=no";
+                    confiApi2 = {
+                        headers: {
+                            "Transfer-Encoding": "chunked",
+                            "Connection": "keep-alive",
+                            "Vary": "Accept-Encoding",
+                            "CDN-PullZone": "93447",
+                            "CDN-Uid": "8fa3a04a-75d9-4707-8056-b7b33c8ac7fe",
+                            "CDN-RequestCountryCode": "GB",
+                            "CDN-ProxyVer": "1.02",
+                            "CDN-RequestPullSuccess": "True",
+                            "CDN-RequestPullCode": "200",
+                            "CDN-CachedAt": "07/15/2022 23:19:46",
+                            "CDN-EdgeStorageId": "752",
+                            "CDN-Status": "200",
+                            "CDN-RequestId": "0b24f89fabca4370fd07868e18fb9c75",
+                            "CDN-Cache": "MISS",
+                            "Cache-Control": "public, max-age=180",
+                            "Content-Type": "application/json",
+                            "Date": "Fri, 15 Jul 2022 23:19:46 GMT",
+                            "Server": "BunnyCDN-DE-880"
+                        }
+                    };
+                    return [4 /*yield*/, fetch(API_URL_TEMP, confiApi2)
+                            .then(function (response) { return response.json(); })
+                            .then(function (dataTemp) {
+                            var element = document.getElementById('temperatura');
+                            element.innerHTML = "<p>".concat(dataTemp.current.temp_c, "<p>");
+                            console.log(dataTemp.current.temp_c);
+                        })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
     });
 }
 function chuckJokes() {
     return __awaiter(this, void 0, void 0, function () {
         var API_URL_CHUCK, confiApi3;
         return __generator(this, function (_a) {
-            API_URL_CHUCK = "https://api.chucknorris.io/jokes/random";
-            confiApi3 = {
-                headers: {
-                    Accept: "application/json"
-                }
-            };
-            fetch(API_URL_CHUCK, confiApi3)
-                .then(function (response) { return response.json(); })
-                .then(function (dataChuck) {
-                var element = document.getElementById('joke');
-                element.innerHTML = "<p>".concat(dataChuck.value, "<p>");
-                cargarTemperaturas();
-            });
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    API_URL_CHUCK = "https://api.chucknorris.io/jokes/random";
+                    confiApi3 = {
+                        headers: {
+                            Accept: "application/json"
+                        }
+                    };
+                    return [4 /*yield*/, fetch(API_URL_CHUCK, confiApi3)
+                            .then(function (response) { return response.json(); })
+                            .then(function (dataChuck) {
+                            var element = document.getElementById('joke');
+                            element.innerHTML = "<p>".concat(dataChuck.value, "<p>");
+                            cargarTemperaturas();
+                        })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
         });
     });
 }

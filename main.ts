@@ -33,7 +33,7 @@ async function cargarChistes() {
     
 
 }
- function cargarTemperaturas(){
+async function cargarTemperaturas(){
     let API_URL_TEMP ="http://api.weatherapi.com/v1/current.json?key=74b79570c166486883b85428221407&q=Barcelona&aqi=no";
     let confiApi2={
       headers:{
@@ -58,7 +58,7 @@ async function cargarChistes() {
       }
     }
   
-    fetch(API_URL_TEMP,confiApi2)
+    await fetch(API_URL_TEMP,confiApi2)
     .then(response => response.json())
     .then(dataTemp =>{
       let element:any = document.getElementById('temperatura');
@@ -75,7 +75,7 @@ async function chuckJokes() {
     },
 };
 
-  fetch( API_URL_CHUCK,confiApi3)
+ await fetch( API_URL_CHUCK,confiApi3)
   .then(response => response.json())
   .then(dataChuck =>{
     let element:any = document.getElementById('joke');
