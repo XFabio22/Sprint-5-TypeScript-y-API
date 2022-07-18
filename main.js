@@ -37,39 +37,59 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 // FETCH APIS WHATER & JOKE
-function randomJoke() {
-    var apiRandom = Math.floor(Math.random() * 2 + 1);
-    if (apiRandom == 1) {
-        cargarChistes();
-    }
-    else if (apiRandom == 2) {
-        chuckJokes();
-    }
-    console.log("1 JOKE , 2 CHUCK JOKE:", apiRandom);
-}
+// function randomJoke(){
+//   let apiRandom =Math.floor(Math.random() * 2 + 1)
+//   if(apiRandom == 1){
+//     cargarChistes();
+//   }else if (apiRandom == 2){
+//     chuckJokes();
+//   }
+//   console.log ("1 JOKE , 2 CHUCK JOKE:",apiRandom);
+// }
+var reportJokes = [];
+var fechaActual = new Date;
 cargarTemperaturas();
 function cargarChistes() {
     return __awaiter(this, void 0, void 0, function () {
-        var API_URL, confiApi;
+        var API_URL, API_URL_CHUCK, confiApi, jokesZ, jokes, confiApi3, chuckJokes, jokes2, apiRandom, resultado, element, ObjJoke;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     API_URL = "https://icanhazdadjoke.com/";
+                    API_URL_CHUCK = "https://api.chucknorris.io/jokes/random";
                     confiApi = {
                         headers: {
                             Accept: "application/json"
                         }
                     };
-                    return [4 /*yield*/, fetch(API_URL, confiApi) // hace un peticion y devuelve el valor se asemeja a un forEach
-                            .then(function (response) { return response.json(); })
-                            .then(function (data) {
-                            var element = document.getElementById('joke');
-                            element.innerHTML = "<p>".concat(data.joke, "<p>");
-                            crearObjJoke(data);
-                            cargarTemperaturas();
-                        })];
+                    return [4 /*yield*/, fetch(API_URL, confiApi)]; // hace un peticion y devuelve el valor se asemeja a un forEach
                 case 1:
-                    _a.sent();
+                    jokesZ = _a.sent() // hace un peticion y devuelve el valor se asemeja a un forEach
+                    ;
+                    return [4 /*yield*/, jokesZ.json()];
+                case 2:
+                    jokes = _a.sent();
+                    confiApi3 = {
+                        headers: {
+                            Accept: "application/json"
+                        }
+                    };
+                    return [4 /*yield*/, fetch(API_URL_CHUCK, confiApi3)];
+                case 3:
+                    chuckJokes = _a.sent();
+                    return [4 /*yield*/, chuckJokes.json()];
+                case 4:
+                    jokes2 = _a.sent();
+                    apiRandom = Math.floor(Math.random());
+                    resultado = apiRandom ? jokes.joke : jokes2.value;
+                    element = document.getElementById('joke');
+                    element.innerHTML = resultado;
+                    ObjJoke = {
+                        date: fechaActual,
+                        joke: resultado,
+                        score: 0
+                    };
+                    reportJokes.push(ObjJoke);
                     return [2 /*return*/];
             }
         });
@@ -118,70 +138,54 @@ function cargarTemperaturas() {
         });
     });
 }
-function chuckJokes() {
-    return __awaiter(this, void 0, void 0, function () {
-        var API_URL_CHUCK, confiApi3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    API_URL_CHUCK = "https://api.chucknorris.io/jokes/random";
-                    confiApi3 = {
-                        headers: {
-                            Accept: "application/json"
-                        }
-                    };
-                    return [4 /*yield*/, fetch(API_URL_CHUCK, confiApi3)
-                            .then(function (response) { return response.json(); })
-                            .then(function (dataChuck) {
-                            var element = document.getElementById('joke');
-                            element.innerHTML = "<p>".concat(dataChuck.value, "<p>");
-                            cargarTemperaturas();
-                        })];
-                case 1:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
+// async function chuckJokes() {
+//   let API_URL_CHUCK = "https://api.chucknorris.io/jokes/random";
+//   let confiApi3 = {
+//     headers: { 
+//         Accept: "application/json",
+//     },
+// };
+//  await fetch( API_URL_CHUCK,confiApi3)
+//   .then(response => response.json())
+//   .then(dataChuck =>{
+//     let element:any = document.getElementById('joke');
+//     element.innerHTML = `<p>${dataChuck.value}<p>`;
+//     cargarTemperaturas();
+//   }) 
+// }
 cargarChistes();
 // CREATE OBJ JOKE
-var reportJoke = [];
-var fechaActual = new Date;
-var VOTEDJOKE = /** @class */ (function () {
-    function VOTEDJOKE(id, jokeP, score, date) {
-        this.id = id;
-        this.jokeP = jokeP;
-        this.score = score;
-        this.date = date;
-    }
-    return VOTEDJOKE;
-}());
-function crearObjJoke(data) {
-    var id = data.id;
-    var chiste = data.joke;
-    var jokeP = chiste;
-    var score = 0;
-    var date = fechaActual.toISOString();
-    var joke1 = new VOTEDJOKE(id, jokeP, score, date);
-    reportJoke.push(joke1);
-}
+//   interface ObjJoke{
+//     id: string;
+//     jokeP: string;
+//     score: number;
+//     date : string;
+// }
+//   class VOTEDJOKE implements ObjJoke {
+//     id: string;
+//     jokeP: string;
+//     score: number;
+//     date : string;
+//     constructor(id: string, jokeP: string,score: number, date : string){
+//       this.id= id;
+//       this.jokeP = jokeP;
+//       this.score = score;
+//       this.date = date;
+//     }
+//   }
+// function crearObjJoke(data){
+//     let id =data.id
+//   let chiste:any = data.joke
+//   let jokeP= chiste;
+//   let score = 0;
+//   let date = fechaActual.toISOString();
+//   let joke1 = new VOTEDJOKE(id,jokeP,score,date);
+//   reportJokes.push(joke1)
+// }  
 // SCORE BUTTONS 
 function puntuacion1(score) {
-    reportJoke[reportJoke.length - 1].score = score;
-    console.log("Chiste reportados", reportJoke);
-    randomJoke();
-}
-;
-function puntuacion2(score) {
-    reportJoke[reportJoke.length - 1].score = score;
-    console.log("Chiste reportados", reportJoke);
-    randomJoke();
-}
-;
-function puntuacion3(score) {
-    reportJoke[reportJoke.length - 1].score = score;
-    console.log("Chiste reportados", reportJoke);
-    randomJoke();
+    reportJokes[reportJokes.length - 1].score = score;
+    console.log("Chiste reportados", reportJokes);
+    cargarChistes();
 }
 ;
