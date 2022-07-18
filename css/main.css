@@ -1,10 +1,10 @@
 @charset "UTF-8";
-body {
-  background-image: url(/img/blob.svg);
+.principal {
+  background-image: url("../img/blob.svg");
   background-position: center;
   background-attachment: contain;
   background-size: cover;
-  height: 700px;
+  height: 800px;
 }
 
 .container {
