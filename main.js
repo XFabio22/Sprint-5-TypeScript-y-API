@@ -36,17 +36,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// FETCH APIS WHATER & JOKE
-// function randomJoke(){
-//   let apiRandom =Math.floor(Math.random() * 2 + 1)
-//   if(apiRandom == 1){
-//     cargarChistes();
-//   }else if (apiRandom == 2){
-//     chuckJokes();
-//   }
-//   console.log ("1 JOKE , 2 CHUCK JOKE:",apiRandom);
-// }
-var reportJokes = [];
+var antesDeReportar = [];
+var reportJoke = [];
 var fechaActual = new Date;
 cargarTemperaturas();
 function cargarChistes() {
@@ -62,10 +53,9 @@ function cargarChistes() {
                             Accept: "application/json"
                         }
                     };
-                    return [4 /*yield*/, fetch(API_URL, confiApi)]; // hace un peticion y devuelve el valor se asemeja a un forEach
+                    return [4 /*yield*/, fetch(API_URL, confiApi)];
                 case 1:
-                    jokesZ = _a.sent() // hace un peticion y devuelve el valor se asemeja a un forEach
-                    ;
+                    jokesZ = _a.sent();
                     return [4 /*yield*/, jokesZ.json()];
                 case 2:
                     jokes = _a.sent();
@@ -89,7 +79,7 @@ function cargarChistes() {
                         joke: resultado,
                         score: 0
                     };
-                    reportJokes.push(ObjJoke);
+                    antesDeReportar.push(ObjJoke);
                     return [2 /*return*/];
             }
         });
@@ -138,54 +128,15 @@ function cargarTemperaturas() {
         });
     });
 }
-// async function chuckJokes() {
-//   let API_URL_CHUCK = "https://api.chucknorris.io/jokes/random";
-//   let confiApi3 = {
-//     headers: { 
-//         Accept: "application/json",
-//     },
-// };
-//  await fetch( API_URL_CHUCK,confiApi3)
-//   .then(response => response.json())
-//   .then(dataChuck =>{
-//     let element:any = document.getElementById('joke');
-//     element.innerHTML = `<p>${dataChuck.value}<p>`;
-//     cargarTemperaturas();
-//   }) 
-// }
 cargarChistes();
 // CREATE OBJ JOKE
-//   interface ObjJoke{
-//     id: string;
-//     jokeP: string;
-//     score: number;
-//     date : string;
-// }
-//   class VOTEDJOKE implements ObjJoke {
-//     id: string;
-//     jokeP: string;
-//     score: number;
-//     date : string;
-//     constructor(id: string, jokeP: string,score: number, date : string){
-//       this.id= id;
-//       this.jokeP = jokeP;
-//       this.score = score;
-//       this.date = date;
-//     }
-//   }
-// function crearObjJoke(data){
-//     let id =data.id
-//   let chiste:any = data.joke
-//   let jokeP= chiste;
-//   let score = 0;
-//   let date = fechaActual.toISOString();
-//   let joke1 = new VOTEDJOKE(id,jokeP,score,date);
-//   reportJokes.push(joke1)
-// }  
 // SCORE BUTTONS 
 function puntuacion1(score) {
-    reportJokes[reportJokes.length - 1].score = score;
-    console.log("Chiste reportados", reportJokes);
+    antesDeReportar[antesDeReportar.length - 1].score = score;
+    var reportJoke = antesDeReportar.filter(function (ObjJoke) {
+        return ObjJoke.score > 0;
+    });
+    console.log("Chiste reportados", reportJoke);
     cargarChistes();
 }
 ;
